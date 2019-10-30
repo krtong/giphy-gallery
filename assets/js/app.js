@@ -1,5 +1,5 @@
             //global variables
-            let giphys = ['Trending', 'Tim And Eric', 'METAL', 'Don Cheadle', 'Captain Planet', 'GI Joe'];
+            let giphys = ['Trending', 'robotic uprising', 'METAL', 'Don Cheadle', 'Captain Planet', 'skate or die'];
             let apiKey = 'FMm6h8iCj05LtP1gHs2RaqXNkERa7HxZ';
             let numOfGifs = 20;
             let imgObj = {};
