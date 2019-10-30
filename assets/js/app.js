@@ -82,7 +82,7 @@
             //create buttons on form input
             function populateButtons() {
                 // let bgColor = ['38141B', '441E2D', '71B4B7', '6DF2E9', '35F2B0', '6DF2E9', '71B4B7', '441E2D']
-                let bgColor = ['9400D3', '4B0082', '0000FF', '00FF00', 'FFFF00', 'FF7F00', 'FF0000']
+                let bgColor = ['9400D3', '4B0082', '0000FF', '00FF00', 'BEBE25', 'FF7F00', 'FF0000']
                 $("#buttons-view").empty();
                 giphys.forEach((giphy, idx) => {
                     $("#buttons-view").append(`

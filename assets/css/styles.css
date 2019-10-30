@@ -1,7 +1,8 @@
 
         body {
-            background-color: #283845;
-            color: #B8B08D;
+            background-color: #2a2135;
+            color: rgb(31, 31, 31);
+
         }
 
         h1 {
@@ -9,24 +10,43 @@
         }
 
         h3 {
+            /* background-image: rgb(190, 190, 37); */
             color: #F29559;
         }
 
         button,
-        div,
-        form,
-        input {
+        .card {
             margin: 10px;
         }
-        .contianer {
-            top: 200px;
+
+        .card:hover {
+            
+            box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.616)  ;
+            transform: rotate(0.01turn) ;
+            transition: box-shadow  250ms ;
+            transition: transform 250ms ;
+            z-index: 20;
         }
+            
+        form {
+            display: inline-block;
+            width: 600px;
+        }
+        nav {
+            background-color: #4c306d;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.294)  ;
+        }
+
         #add-shit-here {
             display: flex;
             flex-wrap: wrap;
         }
 
-        .btn{
+        .giphy{
             color: #fff;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.329)  ;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.329)  ;
+        }
+
+        .giphy:hover{
+            color: rgb(255, 222, 151);
         }

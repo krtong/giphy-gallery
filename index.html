@@ -10,17 +10,39 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-dark navbar-expand-lg fixed-top portfolio-navbar bg-transparent gradient">
+    <!-- <nav class="navbar navbar-dark navbar-expand-lg fixed-top portfolio-navbar bg-dark gradient">
 
         <h1>Giphy Search</h1>
-        <form id="giphy-form">
+        <form ">
             <input type="text" class="form-control" id="giphy-input">
             <input id="add-giphy"class="btn btn-primary" type="submit" value="Add a Giphy, Yo!">
         </form>
-        <div id="buttons-view"></div>
-    </nav>
+    </nav> -->
+
+    <nav class="navbar navbar-expand-lg bg-gradient">
+            <a class="navbar-brand btn btn-outline-light" href="#"><h5>
+                    Giphy Search
+            </h5></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+              </ul>
+              <form class="form-inline my-2 my-lg-0" id="giphy-form">
+                <input class="form-control mr-sm-2" id="giphy-input" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-warning my-2 my-sm-0"  id="add-giphy" type="submit">Search</button>
+              </form>
+            </div>
+          </nav>
+
+
+
+
     <main>
-        <div class="container">
+        <div class="container mx-auto">
+            <div id="buttons-view"></div>
             <div class="card-column" id="add-shit-here"></div>
             <div id="prerender" style="display:none"></div>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
