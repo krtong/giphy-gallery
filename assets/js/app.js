@@ -1,5 +1,5 @@
             //global variables
-            let giphys = ['Trending', 'robotic uprising', 'METAL', 'Don Cheadle', 'Captain Planet', 'skate or die'];
+            let giphys = ['Trending', 'Trippy', 'METAL', 'Mandelbrot', 'Captain Planet', 'geometric', 'Skate or Die', 'Fibonacci', 'Paul Newman', ];
             let apiKey = 'FMm6h8iCj05LtP1gHs2RaqXNkERa7HxZ';
             let numOfGifs = 20;
             let imgObj = {};
@@ -20,6 +20,7 @@
             function grabGiphyImages(titleStr, dataArr) {
                 imgObj[titleStr] = [];
                 dataArr.forEach(obj => {
+                    if(obj.images['fixed_height'].url)
                     imgObj[titleStr].push({
                         animated: obj.images['fixed_height'].url,
                         date: ((date = obj.import_datetime) => `${['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'Septemper', 'October', 'November', 'December'][date.slice(5, 7)-1]} ${parseInt(date.slice(8,10))}, ${date.slice(0, 4)}`)(),
@@ -28,7 +29,8 @@
                         sourceURL: obj.source,
                         static: obj.images['fixed_height_still'].url,
                         title: obj.title
-                    });
+                    })
+                    else console.log('err', obj);
                 });
             };
 
@@ -101,7 +103,7 @@
                 event.preventDefault();
                 if (validInput) {
                     giphys.push(giphy);
-                    giphys.length > 15 ? giphys.splice(1, 1) : giphys;
+                    giphys.length > 25 ? giphys.splice(1, 1) : giphys;
                     populateButtons();
                 }
             });
