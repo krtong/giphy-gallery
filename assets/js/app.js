@@ -103,7 +103,7 @@
                 event.preventDefault();
                 if (validInput) {
                     giphys.push(giphy);
-                    giphys.length > 25 ? giphys.splice(1, 1) : giphys;
+                    giphys.length > 27 ? giphys.splice(1, 1) : giphys;
                     populateButtons();
                 }
             });
