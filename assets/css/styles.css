@@ -27,6 +27,7 @@
             transition: transform 250ms ;
             z-index: 20;
         }
+
             
         form {
             display: inline-block;
@@ -44,9 +45,14 @@
 
         .giphy{
             color: #fff;
-            text-shadow: 0 0 20px rgba(0, 0, 0, 0.329)  ;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.623)  ;
         }
 
         .giphy:hover{
-            color: rgb(255, 222, 151);
+            color: rgb(255, 206, 101);
+            transition: background-color 100ms ease-in;
+            background-color: #2a2135 !important;
+            padding: 6px 12px;
+            border: 1px solid rgb(255, 206, 101);
+
         }
