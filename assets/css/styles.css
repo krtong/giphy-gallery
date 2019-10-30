@@ -1,0 +1,32 @@
+
+        body {
+            background-color: #283845;
+            color: #B8B08D;
+        }
+
+        h1 {
+            color: #B8B08D;
+        }
+
+        h3 {
+            color: #F29559;
+        }
+
+        button,
+        div,
+        form,
+        input {
+            margin: 10px;
+        }
+        .contianer {
+            top: 200px;
+        }
+        #add-shit-here {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .btn{
+            color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.329)  ;
+        }
