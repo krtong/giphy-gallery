@@ -1,12 +1,12 @@
             //global variables
-            let giphys = ['Trending', 'Random', 'Mr. Nobody', 'The Lion King'];
+            let giphys = ['Trending', 'Tim And Eric', 'Funny or Die', 'Don Cheadle', 'Captain Planet', 'GI Joe'];
             let apiKey = 'FMm6h8iCj05LtP1gHs2RaqXNkERa7HxZ';
-            let numOfGifs = 10;
+            let numOfGifs = 20;
             let imgObj = {};
 
-            //populate page with trending pictures on page load.
-            
-            //toggle static/animated gif on image click
+            $("#add-shit-here").empty();
+
+            //tIMG click => Toggle between 'static' and 'animated'
             function renderImg() {
                 let idx = $(this).attr("id");
                 let newClass = $(this).attr("class").includes("animated") ? "static" : "animated";
@@ -18,37 +18,30 @@
 
             // create data obj on ajax get response
             function grabGiphyImages(titleStr, dataArr) {
-                let arr = [];
+                imgObj[titleStr] = [];
                 dataArr.forEach(obj => {
-                    console.log(obj)
-
-                    let tempObj = {
+                    imgObj[titleStr].push({
                         animated: obj.images['fixed_height'].url,
-                        date: ((date = obj.import_datetime) => `${['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'Septemper', 'October', 'November', 'December'][date.slice(5, 7)-1]} ${date.slice(8, 9)}, ${date.slice(0, 4)}`)(),
-                        rating: obj.rating,
+                        date: ((date = obj.import_datetime) => `${['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'Septemper', 'October', 'November', 'December'][date.slice(5, 7)-1]} ${parseInt(date.slice(8,10))}, ${date.slice(0, 4)}`)(),
+                        rating: obj.rating.toUpperCase(),
                         source: obj.source_tld,
                         sourceURL: obj.source,
                         static: obj.images['fixed_height_still'].url,
                         title: obj.title
-                    };
-
-
-                    arr.push(tempObj)
+                    });
                 });
-                imgObj[titleStr] = arr;
             };
 
-            // ajax get request on button click
-            function alertGiphyName(event, searchType = 'search', giphyName = $(this).attr("data-name"),offset=0) {
+            // Button click => AJAX 'GET' Request
+            function alertGiphyName(event, searchType = 'search', giphyName = $(this).attr("data-name"), offset = 0) {
                 $("#add-shit-here").empty();
                 if (imgObj[giphyName]) {
                     populateImages(imgObj[giphyName])
                 } else {
                     $.ajax({
-                        url: `https://api.giphy.com/v1/gifs/${searchType}?api_key=${apiKey}${searchType === 'search' ? `&q=${giphyName}` : ''}&limit=${numOfGifs}&lang=en&rating=R`,
+                        url: `https://api.giphy.com/v1/gifs/${searchType}?api_key=${apiKey}${searchType === 'search' ? `&q=${giphyName}` : ''}&limit=${numOfGifs}&offset=${offset}&lang=en&rating=R`,
                         method: "GET"
                     }).then(function (response) {
-                        console.log(`${giphyName}::::::`, response)
                         if (response.data.length === numOfGifs ? false : true) {
                             alert("no images found")
                         } else {
@@ -59,11 +52,13 @@
                 }
             };
 
-            //populate images on ajax get response
+            //AJAX Request 'success' => populate images on document
             function populateImages(dataObj, dataName) {
                 $("#add-shit-here").empty();
+                let addShitHereHTML = '';
+                let preRenderHTML = ''
                 dataObj.forEach((imgObj, idx) => {
-                    $("#add-shit-here").append(`
+                    addShitHereHTML += `
                     <div class="card">
                       <img src="${imgObj.static}" class="static card-img-top" data-name="${dataName}" id="${idx}">
                       <div class="card-body">
@@ -71,18 +66,21 @@
                         <p class="card-text">This gif was originally posted ${imgObj.date}${imgObj.source ? ` by: <a href="${imgObj.sourceURL}"> ${imgObj.source}</a>.`: `.`}</p>
                       </div>
                       <div class="card-footer">
-                        <small class="text-muted"><a href="https://github.com/Giphy/GiphyAPI/issues/55">Rating: ${imgObj.rating.toUpperCase()}</a></small>
+                        <small class="text-muted"><a href="https://github.com/Giphy/GiphyAPI/issues/55">Rating: ${imgObj.rating}</a></small>
                       </div>
-                    </div>
-                    `);
-                    $("#prerender").append(`<img src="${imgObj['animated']}">`)
+                    </div>`;
+
+                    preRenderHTML += `<img src="${imgObj['animated']}">`;
                 });
+                addShitHereHTML += `<br><button class="btn btn-outline-warning" id="add-more">more</button>`;
+
+                $("#add-shit-here").html(addShitHereHTML)
+                $("#prerender").html(preRenderHTML)
             };
 
-            //create buttons on form input
+            //Form submit => create & repopulate buttons
             function populateButtons() {
-                // let bgColor = ['38141B', '441E2D', '71B4B7', '6DF2E9', '35F2B0', '6DF2E9', '71B4B7', '441E2D']
-                let bgColor = ['9400D3', '4B0082', '0000FF', '00FF00', 'BEBE25', 'FF7F00', 'FF0000']
+                let bgColor = ['9400D3', '4B0082', '0000FF', '00FF00', 'BEBE25', 'FF7F00', 'FF0000'];
                 $("#buttons-view").empty();
                 giphys.forEach((giphy, idx) => {
                     $("#buttons-view").append(`
@@ -92,7 +90,11 @@
             };
 
 
-            //form input
+            //populate page with trending pictures on page load.
+            alertGiphyName('', 'trending', 'Trending')
+            populateButtons();
+
+            //Set up event listeners 
             $("#add-giphy").on("click", function (event) {
                 let giphy = $("#giphy-input").val().trim();
                 let validInput = giphy.length > 2 ? true : false;
@@ -105,10 +107,10 @@
                 }
             });
 
+            //Set up more event listeners.
             $(document).on("click", ".giphy", alertGiphyName);
             $(document).on("click", ".static, .animated", renderImg);
-            
-            alertGiphyName('', 'trending', 'Trending')
-            // grabGiphyImages('Trending', 'trending')
-            // populateImages()
-            populateButtons();
+            $(document).on("click", ".more", renderImg);
+            $(document).on("mouseover", ".static, .animated", function () {
+                $(this).css('cursor', 'pointer')
+            });
