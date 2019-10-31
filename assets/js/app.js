@@ -1,5 +1,5 @@
             //global variables
-            const giphys = ['Trending', 'Trippy', 'METAL', 'Mandelbrot', 'Captain Planet', 'geometric', 'Skate or Die', 'Fibonacci', 'Perfect Loop', ];
+            const giphys = ['Trending', 'Trippy','Ultraman',  'METAL', 'Mandelbrot', 'Captain Planet', 'geometric', 'Skate or Die', 'Fibonacci', 'Perfect Loop', 'Chillwave', ];
             const apiKey = 'FMm6h8iCj05LtP1gHs2RaqXNkERa7HxZ';
             const numOfGifs = 20;
             const imgObj = {};
