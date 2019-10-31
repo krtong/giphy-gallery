@@ -59,9 +59,11 @@
                 $("#add-shit-here").empty();
                 let addShitHereHTML = '';
                 let preRenderHTML = ''
+                let randomNumber1 = Math.floor(Math.random() * numOfGifs)
+                let randomNumber2 = Math.floor(Math.random() * numOfGifs)
                 dataObj.forEach((imgObj, idx) => {
                     addShitHereHTML += `
-                    <div class="card">
+                    <div class="card ${idx%2<1? 'rotate-1' : 'rotate-2'}">
                       <img src="${imgObj.static}" class="static card-img-top" data-name="${dataName}" id="${idx}">
                       <div class="card-body">
                         <h5 class="card-title">${imgObj.title? imgObj.title : 'Untitled Gif'}</h5>
