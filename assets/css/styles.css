@@ -24,7 +24,7 @@
         .card:hover {
             
             box-shadow: 10px 15px 30px rgba(13, 9, 48, 0.966)  ;
-            transform: rotate(0.01turn) ;
+            transform: scale(1.25) rotate(0.01turn) ;
             transition: transform 250ms ;
             z-index: 20;
         }
