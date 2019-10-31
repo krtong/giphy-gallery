@@ -74,7 +74,7 @@
 
                     preRenderHTML += `<img src="${imgObj['animated']}">`;
                 });
-                addShitHereHTML += `<br><button class="btn btn-outline-warning" id="add-more">more</button>`;
+                addShitHereHTML += `<br /><br /><button class="btn btn-outline-warning" id="add-more">more</button>`;
 
                 $("#add-shit-here").html(addShitHereHTML)
                 $("#prerender").html(preRenderHTML)
@@ -82,11 +82,11 @@
 
             //Form submit => create & repopulate buttons
             function populateButtons() {
-                let bgColor = ['9400D3', '4B0082', '0000FF', '00FF00', 'BEBE25', 'FF7F00', 'FF0000'];
+                let bgColor = ['magenta', 'purple', 'blue', 'lime', 'gold', 'orange', 'red'];
                 $("#buttons-view").empty();
                 giphys.forEach((giphy, idx) => {
                     $("#buttons-view").append(`
-                        <button id="button-${idx}" class="giphy btn btn-outline" style="background-color: #${bgColor[idx%bgColor.length]}" data-name="${giphy}">${giphy}</button>
+                        <button id="button-${idx}" class="giphy btn btn-outline" style="background-color: ${bgColor[idx%bgColor.length]}" data-name="${giphy}">${giphy}</button>
                     `);
                 });
             };
