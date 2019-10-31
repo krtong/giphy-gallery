@@ -38,7 +38,7 @@
             function alertGiphyName(event, searchType = 'search', giphyName = $(this).attr("data-name"), offset = 0) {
                 $("#add-shit-here").empty();
                 if (imgObj[giphyName]) {
-                    populateImages(imgObj[giphyName])
+                    populateImages(imgObj[giphyName], giphyName)
                 } else {
                     $.ajax({
                         url: `https://api.giphy.com/v1/gifs/${searchType}?api_key=${apiKey}${searchType === 'search' ? `&q=${giphyName}` : ''}&limit=${numOfGifs}&offset=${offset}&lang=en&rating=R`,
