@@ -1,16 +1,16 @@
             //global variables
-            let giphys = ['Trending', 'Trippy', 'METAL', 'Mandelbrot', 'Captain Planet', 'geometric', 'Skate or Die', 'Fibonacci', 'Paul Newman', ];
-            let apiKey = 'FMm6h8iCj05LtP1gHs2RaqXNkERa7HxZ';
-            let numOfGifs = 20;
-            let imgObj = {};
+            const giphys = ['Trending', 'Trippy', 'METAL', 'Mandelbrot', 'Captain Planet', 'geometric', 'Skate or Die', 'Fibonacci', 'Perfect Loop', ];
+            const apiKey = 'FMm6h8iCj05LtP1gHs2RaqXNkERa7HxZ';
+            const numOfGifs = 20;
+            const imgObj = {};
 
             $("#add-shit-here").empty();
 
             //tIMG click => Toggle between 'static' and 'animated'
             function renderImg() {
-                let idx = $(this).attr("id");
-                let newClass = $(this).attr("class").includes("animated") ? "static" : "animated";
-                let giphyName = $(this).attr("data-name");
+                const idx = $(this).attr("id");
+                const newClass = $(this).attr("class").includes("animated") ? "static" : "animated";
+                const giphyName = $(this).attr("data-name");
 
                 $(this).attr("src", imgObj[giphyName][idx][newClass]);
                 $(this).attr("class", `${newClass} card-img-top`);
@@ -59,8 +59,6 @@
                 $("#add-shit-here").empty();
                 let addShitHereHTML = '';
                 let preRenderHTML = ''
-                let randomNumber1 = Math.floor(Math.random() * numOfGifs)
-                let randomNumber2 = Math.floor(Math.random() * numOfGifs)
                 dataObj.forEach((imgObj, idx) => {
                     addShitHereHTML += `
                     <div class="card ${idx%2<1? 'rotate-1' : 'rotate-2'}">
