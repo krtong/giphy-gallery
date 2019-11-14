@@ -22,7 +22,6 @@ function renderImg() {
 // create data obj on ajax get response
 function buildArrayOfImageObjects(titleStr, dataArr, number) {
     imgObj[titleStr] = [];
-    console.log(number)
 
     dataArr.forEach(obj => {
         imgObj[titleStr].push({
@@ -64,7 +63,7 @@ function returnImageDataFromAPI(notUsed, searchType = 'search', giphyName = $(th
 function populateImages(imgArr, dataName) {
     // splits the imgArr up by heights so the column heights are as even as possible.
     imgArr.sort((a, b) => a.height > b.height ? -1 : 1).sort(a => imgArr.indexOf(a) % 2 > 0 ? 1 : -1);
-    
+
     // renders images to page   
     let [addShitHereHTML, preRenderHTML] = ['', ''];
     $("#add-shit-here").empty();
