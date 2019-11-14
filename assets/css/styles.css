@@ -1,68 +1,72 @@
+/* global */
+body {
+    background-color: #2a2135;
+    background: radial-gradient(#422e5a, #1f1827) !important;
+    color: rgb(31, 31, 31);
+}
 
-        body {
-            background-color: #2a2135;
-            background: radial-gradient(#422e5a, #1f1827) !important;
+h1 {
+    color: #B8B08D;
+}
 
-            color: rgb(31, 31, 31);
+h3 {
+    color: #F29559;
+}
 
-        }
+/* navbar */
+form {
+    display: inline-block;
+    width: 500px;
+}
 
-        h1 {
-            color: #B8B08D;
-        }
+nav {
+    background-color: #4c306d;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.294);
+}
 
-        h3 {
-            /* background-image: rgb(190, 190, 37); */
-            color: #F29559;
-        }
+/* gif cards */
+.card {
+    display: inline-block;
+    margin: 0.65em 0;
+    width: 540px;
+  }
 
-        button,
-        .card {
-            margin: 10px;
-        } 
+.rotate-left:hover {
+    transform: rotate(-0.01turn);
+}
 
+.rotate-right:hover {
+    transform: rotate(0.01turn);
+}
 
-        .rotate-1:hover {
-            box-shadow: 10px 15px 30px rgba(13, 9, 48, 0.966)  ;
-            transform:   rotate(-0.01turn) /* scale(1.25) */ ;
-            transition: transform 250ms ;
-            z-index: 20;
-            
-        }
-        .rotate-2:hover {
-            box-shadow: 10px 15px 30px rgba(13, 9, 48, 0.966)  ;
-            transform:   rotate(0.01turn) /* scale(1.25) */ ;
-            transition: transform 250ms ;
-            z-index: 20;
-        }
-        
+.rotate-left:hover,
+.rotate-right:hover {
+    box-shadow: 10px 15px 30px rgba(13, 9, 48, 0.966);
+    transition: transform 250ms;
+    z-index: 20;
+}
 
 
-            
-        form {
-            display: inline-block;
-            width: 600px;
-        }
-        nav {
-            background-color: #4c306d;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.294)  ;
-        }
 
-        #add-shit-here {
-            display: flex;
-            flex-wrap: wrap;
-        }
+/* gif container*/
+#add-shit-here {
+    column-count: 2;
+}
 
-        .giphy{
-            color: #fff;
-            text-shadow: 0 0 8px rgba(0, 0, 0, 0.623)  ;
-        }
+/* buttons */
+button{
+    margin: 10px;
+}
 
-        .giphy:hover{
-            color: rgb(255, 206, 101);
-            transition: background-color 100ms ease-in;
-            background-color: #2a2135 !important;
-            padding: 6px 12px;
-            border: 1px solid rgb(255, 206, 101);
+.giphy {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.623);
+}
 
-        }
+.giphy:hover {
+    color: rgb(255, 206, 101);
+    transition: background-color 100ms ease-in;
+    background-color: #2a2135 !important;
+    padding: 6px 12px;
+    border: 1px solid rgb(255, 206, 101);
+}
