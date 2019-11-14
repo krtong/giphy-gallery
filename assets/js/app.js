@@ -20,18 +20,20 @@ function renderImg() {
 };
 
 // create data obj on ajax get response
-function buildArrayOfImageObjects(titleStr, dataArr) {
+function buildArrayOfImageObjects(titleStr, dataArr, number) {
     imgObj[titleStr] = [];
+    console.log(number)
 
     dataArr.forEach(obj => {
         imgObj[titleStr].push({
+            offset: number,
             animated: obj.images['fixed_height'].url,
             date: ((date = obj.import_datetime) => `${['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'Septemper', 'October', 'November', 'December'][date.slice(5, 7)-1]} ${parseInt(date.slice(8,10))}, ${date.slice(0, 4)}`)(),
             rating: obj.rating.toUpperCase(),
             source: obj.source_tld,
             sourceURL: obj.source,
             static: obj.images['fixed_height_still'].url,
-            title: obj.title
+            title: obj.title,
         });
     });
 };
@@ -40,7 +42,7 @@ function buildArrayOfImageObjects(titleStr, dataArr) {
 function returnImageDataFromAPI(notUsed, searchType = 'search', giphyName = $(this).attr("data-name"), offset = 0) {
     //this looks incredibly stupid because I wanted to make queries AND get trending results from one function.
     $("#add-shit-here").empty();
-    if (imgObj[giphyName]) {
+    if (imgObj[giphyName] && offset === 0) {
         populateImages(imgObj[giphyName], giphyName)
     } else {
         $.ajax({
@@ -50,7 +52,7 @@ function returnImageDataFromAPI(notUsed, searchType = 'search', giphyName = $(th
             if (response.data.length === numOfGifs ? false : true) {
                 alert("no images found")
             } else {
-                buildArrayOfImageObjects(giphyName, response.data)
+                buildArrayOfImageObjects(giphyName, response.data, offset ? offset : 0)
                 populateImages(imgObj[giphyName], giphyName);
             };
         });
@@ -86,10 +88,10 @@ function populateImages(dataObj, dataName) {
         preRenderHTML += `
                         <img src="${imgObj['animated']}">`;
     });
-    addShitHereHTML += `
-                    <button class="btn btn-outline-warning" id="add-more">
+    addShitHereHTML += dataName === 'Trending' ? `
+                    <button class="btn btn-outline-warning" id="add-more" query="${dataName}">
                         more
-                    </button>`;
+                    </button>` : '';
 
     $("#add-shit-here").html(addShitHereHTML)
     $("#prerender").html(preRenderHTML)
@@ -125,9 +127,23 @@ $("#add-giphy").on("click", function (event) {
     }
 });
 
+
+function newGifs(){
+    event.preventDefault()
+    let titleStr = $(this).attr("query")
+    console.log("click")
+    console.log(titleStr)
+    let key = titleStr.toLowerCase();
+    console.log(imgObj[key])
+    console.log(imgObj)
+    returnImageDataFromAPI('', titleStr.toLowerCase(), titleStr, imgObj[titleStr][0].offset + numOfGifs);
+}
+
+
 //Set up more event listeners.
 $(document).on("click", ".giphy", returnImageDataFromAPI);
 $(document).on("click", ".static, .animated", renderImg);
 $(document).on("mouseover", ".static, .animated", function () {
     $(this).css('cursor', 'pointer')
 });
+$(document).on("click", "#add-more", newGifs)
