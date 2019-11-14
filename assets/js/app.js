@@ -27,13 +27,14 @@ function buildArrayOfImageObjects(titleStr, dataArr, number) {
     dataArr.forEach(obj => {
         imgObj[titleStr].push({
             offset: number,
-            animated: obj.images['fixed_height'].url,
+            animated: obj.images['fixed_width'].url,
             date: ((date = obj.import_datetime) => `${['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'Septemper', 'October', 'November', 'December'][date.slice(5, 7)-1]} ${parseInt(date.slice(8,10))}, ${date.slice(0, 4)}`)(),
             rating: obj.rating.toUpperCase(),
             source: obj.source_tld,
             sourceURL: obj.source,
-            static: obj.images['fixed_height_still'].url,
+            static: obj.images['fixed_width_still'].url,
             title: obj.title,
+            height: obj.images['fixed_width'].height,
         });
     });
 };
@@ -60,11 +61,15 @@ function returnImageDataFromAPI(notUsed, searchType = 'search', giphyName = $(th
 };
 
 //AJAX Request 'success' => populate images on document
-function populateImages(dataObj, dataName) {
+function populateImages(imgArr, dataName) {
+    // splits the imgArr up by heights so the column heights are as even as possible.
+    imgArr.sort((a, b) => a.height > b.height ? -1 : 1).sort(a => imgArr.indexOf(a) % 2 > 0 ? 1 : -1);
+    
+    // renders images to page   
     let [addShitHereHTML, preRenderHTML] = ['', ''];
     $("#add-shit-here").empty();
 
-    dataObj.forEach((imgObj, idx) => {
+    imgArr.forEach((imgObj, idx) => {
         addShitHereHTML += `
                         <div class="card ${idx%2<1? 'rotate-left' : 'rotate-right'}">
                             <img src="${imgObj.static}" class="static card-img-top" data-name="${dataName}" id="${idx}">
