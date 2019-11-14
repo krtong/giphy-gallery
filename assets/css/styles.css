@@ -27,8 +27,8 @@ nav {
 /* gif cards */
 .card {
     display: inline-block;
-    margin: 0.65em 0;
-    width: 540px;
+    margin: 0.65em;
+    width: 545px;
   }
 
 .rotate-left:hover {
@@ -49,10 +49,16 @@ nav {
 
 
 /* gif container*/
-#add-shit-here {
-    column-count: 2;
-}
-
+@media only screen and (min-width: 1200px) {
+    #add-shit-here {
+        column-count: 2;
+    }
+  }
+@media only screen and (max-width: 1199px) {
+    #add-shit-here {
+        column-count: 1;
+    }
+  }
 /* buttons */
 button{
     margin: 10px;
