@@ -49,12 +49,25 @@ nav {
 
 
 /* gif container*/
-@media only screen and (min-width: 1200px) {
+
     #add-shit-here {
         column-count: 2;
     }
+  
+@media only screen and (max-width: 1199px) and (min-width: 991px) {
+    .card {
+        display: inline-block;
+        margin: 0.65em;
+        width: 455px;
+      }
   }
-@media only screen and (max-width: 1199px) {
+  @media only screen and (max-width: 990px) {
+    .card {
+        display: inline-block;
+        margin: 0.65em;
+        width: 650px;
+      }
+      
     #add-shit-here {
         column-count: 1;
     }
